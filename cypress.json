@@ -1,1 +1,7 @@
-{"chromeWebSecurity": false}
+{
+  "chromeWebSecurity": false,
+  "responseTimeout": 500000,
+  "video": true,
+  "videosFolder": "./cypress/videos",
+  "videoUploadOnPasses": false
+  }

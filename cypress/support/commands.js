@@ -45,10 +45,31 @@ Cypress.Commands.add('clickRecaptcha', () => {
   })
 })
 
-Cypress.Commands.add('setRecaptcha', () => {
+Cypress.Commands.add('ableTextArea', () => {
   cy.window().then(win => {
-    win.document.querySelector('#g-recaptcha-response').innerHTML = 'aa'
+    win.document.querySelector('#g-recaptcha-response').style.display = ''
   })
 })
-
 //test
+
+Cypress.Commands.add('getToken', token => {
+  cy.request({
+    method: 'GET',
+    url: 'https://localhost:3000/recaptcha'
+  })
+    .its('token')
+    .should('not.be.empty')
+})
+
+import 'cypress-localstorage-commands'
+
+Cypress.Commands.add('setRecaptcha', () => {
+  cy.request('GET', 'http://localhost:3000/recaptcha', { timeout: 50000 }).then(
+    data => {
+      const token = data.body
+      cy.window().then(win => {
+        win.document.querySelector('#g-recaptcha-response').innerHTML = token
+      })
+    }
+  )
+})

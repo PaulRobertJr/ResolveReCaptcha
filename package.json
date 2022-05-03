@@ -8,9 +8,11 @@
   "license": "MIT",
   "devDependencies": {
     "cypress": "^9.5.2",
+    "cypress-localstorage-commands": "^1.7.0",
     "cypress-plugin-tab": "^1.0.5"
   },
   "dependencies": {
-    "cypress-xpath": "^1.6.2"
+    "cypress-xpath": "^1.6.2",
+    "express": "^4.17.3"
   }
 }
