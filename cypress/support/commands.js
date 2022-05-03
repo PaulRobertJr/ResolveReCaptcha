@@ -1,31 +1,4 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
 Cypress.Commands.add('solveGoogleReCAPTCHA', () => {
-  // Wait until the iframe (Google reCAPTCHA) is totally loaded
   cy.wait(500)
   cy.get('#g-recaptcha *> iframe').then($iframe => {
     const $body = $iframe.contents().find('body')
@@ -50,23 +23,12 @@ Cypress.Commands.add('ableTextArea', () => {
     win.document.querySelector('#g-recaptcha-response').style.display = ''
   })
 })
-//test
-
-Cypress.Commands.add('getToken', token => {
-  cy.request({
-    method: 'GET',
-    url: 'https://localhost:3000/recaptcha'
-  })
-    .its('token')
-    .should('not.be.empty')
-})
-
-import 'cypress-localstorage-commands'
 
 Cypress.Commands.add('setRecaptcha', () => {
   cy.request('GET', 'http://localhost:3000/recaptcha', { timeout: 50000 }).then(
     data => {
       const token = data.body
+      console.log(token)
       cy.window().then(win => {
         win.document.querySelector('#g-recaptcha-response').innerHTML = token
       })
