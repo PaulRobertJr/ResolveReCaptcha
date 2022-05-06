@@ -9,8 +9,8 @@ describe('Resolve Captcha', () => {
 
   it('Pesquisa', () => {
     cy.wait(2500)
-    cy.get('#Placa').type('NDY7055')
-    cy.get('#Renavam').type('144974479')
+    cy.get('#Placa').type('MOCKED')
+    cy.get('#Renavam').type('MOCKED')
     cy.ableTextArea()
     cy.wait(2500)
     cy.setRecaptcha()
